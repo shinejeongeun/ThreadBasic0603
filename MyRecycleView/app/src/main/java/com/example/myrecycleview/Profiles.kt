@@ -1,0 +1,6 @@
+package com.example.myrecycleview
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class Profiles(val gender: Int, val name: String, val age:Int, val job:String)
