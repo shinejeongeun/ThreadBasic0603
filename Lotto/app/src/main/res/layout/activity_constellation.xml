@@ -19,7 +19,7 @@
         android:text="로또 번호 확인" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewconstell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/btnGoResult"
@@ -32,10 +32,10 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/imageView3"
-        android:layout_alignBottom="@id/imageView3"
+        android:layout_alignTop="@id/imageViewconstell"
+        android:layout_alignBottom="@id/imageViewconstell"
         android:layout_marginRight="16dp"
-        android:layout_toRightOf="@id/imageView3"
+        android:layout_toRightOf="@id/imageViewconstell"
         android:gravity="center"
         android:text="쌍둥이자리"
 
@@ -45,7 +45,7 @@
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/imageView3"
+        android:layout_above="@id/imageViewconstell"
         android:layout_marginBottom="125dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
