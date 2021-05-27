@@ -60,14 +60,14 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <Button
-        android:id="@+id/btnGo"
+        android:id="@+id/btnGoResultName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="번호생성"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/EditText"
         app:layout_constraintTop_toBottomOf="@+id/EditText" />
 
@@ -80,6 +80,8 @@
         android:text="뒤로가기"
         app:layout_constraintEnd_toEndOf="@+id/EditText"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/btnGo"
+        app:layout_constraintTop_toTopOf="@+id/btnGoResultName"
         app:layout_constraintHorizontal_bias="0"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
