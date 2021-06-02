@@ -16,51 +16,62 @@ class ConstellationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_constellation)
 
+
         val datePicker = findViewById<DatePicker>(R.id.datePicker)
+        val btnConstellationResult = findViewById<Button>(R.id.btnGoResult)
         val txtConstell = findViewById<TextView>(R.id.txtCostell)
         txtConstell.text = makeConstellationString(datePicker.month, datePicker.dayOfMonth)
-        val btnGoResult = findViewById<Button>(R.id.btnGoResult)
 
-        btnGoResult.setOnClickListener {
-            val intent = Intent(this,ResultActivity::class.java)
-            intent.putIntegerArrayListExtra("result",
-                    ArrayList(getShuffledLottoNumbersFromHash(txtConstell.text.toString(),datePicker.month,datePicker.dayOfMonth)))
-            intent.putExtra("constellation", makeConstellationString(datePicker.month,datePicker.dayOfMonth))
-            val date = ""+datePicker.year + "년" + datePicker.month +"월" + datePicker.dayOfMonth+"일"
-            intent.putExtra("date",date)
+        btnConstellationResult.setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putIntegerArrayListExtra("result", ArrayList(getShuffledLottoNumbers(txtConstell.text.toString())))
+            intent.putExtra("constellation", makeConstellationString(datePicker.month , datePicker.dayOfMonth))
+
+
+            val SimpleDate = ""+datePicker.year + "년" + (datePicker.month+1) +"월" + datePicker.dayOfMonth+"일"
+            intent.putExtra("SimpleDate",SimpleDate)
+
             startActivity(intent)
+
         }
+
         val calendar = Calendar.getInstance()
 
-        datePicker.init(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),
-                object: CalendarView.OnDateChangeListener,DatePicker.OnDateChangedListener{
-                    override fun onSelectedDayChange(view: CalendarView, year: Int, month: Int, dayOfMonth: Int)
-                    {}
+        datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
+                object : CalendarView.OnDateChangeListener, DatePicker.OnDateChangedListener {
+                    override fun onSelectedDayChange(view: CalendarView, year: Int, month: Int, dayOfMonth: Int) {
+                        TODO("Not yet implemented")
+                    }
+
+
+
                     override fun onDateChanged(view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-                        txtConstell.text = makeConstellationString(datePicker.month,datePicker.dayOfMonth)
+                        txtConstell.text=makeConstellationString(datePicker.month,datePicker.dayOfMonth)
                     }
 
                 }
 
-
         )
-
     }
-    fun getShuffledLottoNumbersFromHash(str: String, month: Int, dayOfMonth: Int): MutableList<Int> {
+
+
+    fun getShuffledLottoNumbersFromHash(str: String): MutableList<Int> {
         val list = mutableListOf<Int>()
 
         for (number in 1..45) {
             list.add(number)
         }
 
-        val target = "${month + 1}${String.format("%02d",dayOfMonth)}"+ str
-        list.shuffle(Random(target.hashCode().toLong()))
+        val targetString = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date()) + str
+        list.shuffle(Random(targetString.hashCode().toLong()))
 
-        return list.subList(0,6)
+        return list.subList(0, 6)
     }
-    private fun makeConstellationString(month: Int, dayOfMonth: Int): CharSequence?  {
-        val target = "${month + 1}${String.format("%02d",dayOfMonth)}".toInt()
-        when(target){
+
+    private fun makeConstellationString(month: Int, dayOfMonth: Int): String {
+        val target = "${month}${String.format("%02d", dayOfMonth)}".toInt()
+
+        when (target) {
             in 101..119 -> return "염소자리"
             in 120..218 -> return "물병자리"
             in 219..320 -> return "물고기자리"
@@ -75,7 +86,6 @@ class ConstellationActivity : AppCompatActivity() {
             in 1123..1224 -> return "사수자리"
             in 1225..1231 -> return "염소자리"
             else -> return "기타별자리"
-
         }
 
     }
