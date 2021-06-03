@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">역전로또</string>
+    <string name="textview3">Constellation based number generation</string>
+</resources>
